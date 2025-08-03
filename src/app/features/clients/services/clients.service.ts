@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
@@ -18,39 +18,19 @@ export class ClientsService {
 
   public getClients(params?: { userId: string | null }): Observable<Client[]> {
     const url = this.buildUrl(params);
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `${this.authService.token}`,
-    });
-
-    return this.http.get<ClientDTO>(url, { headers }).pipe(map(this.toClients));
+    return this.http.get<ClientDTO>(url).pipe(map(this.toClients));
   }
 
   public addClient(client: Pass): Observable<Client> {
     const token = this.authService.token;
     const url = `${this.apiUrl}/v1/${token}/passes`;
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `${token}`,
-    });
-
-    return this.http.post<Client>(url, client, { headers });
+    return this.http.post<Client>(url, client);
   }
 
   public pushMessage(data: PushMessageDataDTO) {
     const token = this.authService.token;
     const url = `${this.apiUrl}/v1/${token}/message/push`;
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `${token}`,
-    });
-
-    return this.http.post<PushMessageDataResponce>(url, data, {
-      headers,
-    });
+    return this.http.post<PushMessageDataResponce>(url, data);
   }
 
   private toClients(client: ClientDTO): Client[] {
