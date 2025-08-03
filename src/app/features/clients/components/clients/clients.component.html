@@ -1,0 +1,27 @@
+<div class="clients-container">
+  <!-- тут можно вынести в отдельный компонент например 
+   FilterComponent и туда передавать нужные филды для поиска и там 
+   внутри будет строится форма и отдаваться сюда наружу form.value -->
+  <div class="search-container">
+    <mat-form-field appearance="outline">
+      <mat-label>User ID</mat-label>
+      <input [formControl]="nameControl" matInput placeholder="User ID" />
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <app-table
+    [columns]="clientsTableService.columns"
+    [rows]="clientsTableService.clientRows()"
+    [config]="config"
+    (selectionChanged)="selectionChanged($event)"
+  >
+    <div class="action-buttons" action-buttons>
+      <button matIconButton (click)="addClient()">
+        <mat-icon>add_box</mat-icon>
+      </button>
+      <button matIconButton (click)="pushMessage()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </app-table>
+</div>

@@ -1,0 +1,12 @@
+<mat-button-toggle-group
+  [value]="value"
+  [disabled]="disabled"
+  (change)="onSelectionChange($event.value)"
+  class="toggle-select-group"
+>
+  @for (option of options(); track option.label) {
+  <mat-button-toggle [value]="option.value" class="toggle-option">
+    {{ option.label }}
+  </mat-button-toggle>
+  }
+</mat-button-toggle-group>

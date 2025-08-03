@@ -1,0 +1,18 @@
+<app-dialog-wrapper class="dialog">
+  <span dialog-title>Отправка сообщения клиентам</span>
+  <ng-container dialog-content>
+    <div class="clients-container">
+      <span>Идентификаторы клиентов: {{ clientsStringify() }}</span>
+      <mat-form-field appearance="outline">
+        <mat-label>Введите сообщение</mat-label>
+        <textarea #message matInput></textarea>
+      </mat-form-field>
+    </div>
+  </ng-container>
+  <ng-container dialog-actions>
+    <button matButton (click)="close()">Отмена</button>
+    <button matButton="filled" (click)="pushMessage(message.value)">
+      Сохранить
+    </button>
+  </ng-container>
+</app-dialog-wrapper>

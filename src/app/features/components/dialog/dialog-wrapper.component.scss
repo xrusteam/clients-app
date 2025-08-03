@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.dialog-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dialog-content {
+  width: 100%;
+}
+
+.dialog-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
